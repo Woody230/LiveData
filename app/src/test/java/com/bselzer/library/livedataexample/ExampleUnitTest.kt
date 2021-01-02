@@ -1,4 +1,4 @@
-package com.bselzer.library.livedata
+package com.bselzer.library.livedataexample
 
 import org.junit.Test
 

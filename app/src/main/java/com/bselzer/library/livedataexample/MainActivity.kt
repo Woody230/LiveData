@@ -1,4 +1,4 @@
-package com.bselzer.library.livedata
+package com.bselzer.library.livedataexample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
