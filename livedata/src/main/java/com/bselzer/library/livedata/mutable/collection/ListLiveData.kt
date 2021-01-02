@@ -9,7 +9,7 @@ package com.bselzer.library.livedata.mutable.collection
  * @param comparator the comparator used to sort the list
  */
 open class ListLiveData<Element>(initialValue: List<Element> = emptyList(), defaultValue: List<Element> = emptyList(), var comparator: Comparator<Element>? = null) :
-    CollectionLiveData<Element, List<Element>>(initialValue, defaultValue)
+    CollectionLiveData<Element, List<Element>>(initialValue.sort(comparator), defaultValue)
 {
     companion object
     {
