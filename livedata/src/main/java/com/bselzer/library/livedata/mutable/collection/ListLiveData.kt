@@ -4,23 +4,26 @@ package com.bselzer.library.livedata.mutable.collection
  * Null-safe live data for lists.
  * A [comparator] can be set to maintain a sorted list.
  * @param Element the type of value stored in the list
- * @param defaultValue the default value to set upon reset
  * @param initialValue the initial value to store
+ * @param defaultValue the default value to set upon reset
+ * @param comparator the comparator used to sort the list
  */
-open class ListLiveData<Element>(initialValue: List<Element> = emptyList(), defaultValue: List<Element> = emptyList()) :
+open class ListLiveData<Element>(initialValue: List<Element> = emptyList(), defaultValue: List<Element> = emptyList(), var comparator: Comparator<Element>? = null) :
     CollectionLiveData<Element, List<Element>>(initialValue, defaultValue)
 {
-    /**
-     * The comparator used to sort the list.
-     */
-    var comparator: Comparator<Element>? = null
-        set(value)
+    companion object
+    {
+        /**
+         * Sort the list with the [comparator] if it exists.
+         * @return the sorted list
+         */
+        protected fun <Element> List<Element>.sort(comparator: Comparator<Element>?): List<Element>
         {
-            field = value
-
-            // Sort the list with the new comparator.
-            this.value = this.value
+            return comparator?.let {
+                this.sortedWith(it)
+            } ?: this
         }
+    }
 
     /**
      * Sorts the list with the [comparator] and then sets the [value]. If there are active observers, the value will be dispatched to them.
@@ -32,7 +35,7 @@ open class ListLiveData<Element>(initialValue: List<Element> = emptyList(), defa
      */
     override fun setValue(value: List<Element>)
     {
-        super.setValue(value.sort())
+        super.setValue(value.sort(comparator))
     }
 
     /**
@@ -52,17 +55,6 @@ open class ListLiveData<Element>(initialValue: List<Element> = emptyList(), defa
      */
     override fun postValue(value: List<Element>)
     {
-        super.postValue(value.sort())
-    }
-
-    /**
-     * Sort the list with the [comparator] if it exists.
-     * @return the sorted list
-     */
-    private fun List<Element>.sort(): List<Element>
-    {
-        return comparator?.let { comparator ->
-            this.sortedWith(comparator)
-        } ?: this
+        super.postValue(value.sort(comparator))
     }
 }
