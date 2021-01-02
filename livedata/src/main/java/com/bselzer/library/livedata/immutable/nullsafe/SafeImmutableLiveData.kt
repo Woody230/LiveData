@@ -1,6 +1,5 @@
 package com.bselzer.library.livedata.immutable.nullsafe
 
-import com.bselzer.library.livedata.base.implement.Resettable
 import com.bselzer.library.livedata.base.nullsafe.SafeMutableLiveData
 
 /**
@@ -8,13 +7,4 @@ import com.bselzer.library.livedata.base.nullsafe.SafeMutableLiveData
  * @param Value the type of the value to store
  * @param defaultValue the initial value to store. It is also the value to set upon resetting the instance.
  */
-open class SafeImmutableLiveData<Value>(val defaultValue: Value) : SafeMutableLiveData<Value>(defaultValue), Resettable
-{
-    /**
-     * Set the value to the default value.
-     */
-    override fun reset()
-    {
-        value = defaultValue
-    }
-}
+open class SafeImmutableLiveData<Value>(defaultValue: Value) : SafeMutableLiveData<Value>(defaultValue, defaultValue)
