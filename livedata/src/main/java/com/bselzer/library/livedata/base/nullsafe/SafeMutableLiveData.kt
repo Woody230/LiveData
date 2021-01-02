@@ -1,4 +1,4 @@
-package com.bselzer.library.livedata.base
+package com.bselzer.library.livedata.base.nullsafe
 
 /**
  * A null-safe version of live data that exposes the ability to set values.

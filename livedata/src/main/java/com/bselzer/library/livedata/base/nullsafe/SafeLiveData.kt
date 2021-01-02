@@ -1,4 +1,4 @@
-package com.bselzer.library.livedata.base
+package com.bselzer.library.livedata.base.nullsafe
 
 import androidx.lifecycle.LiveData
 

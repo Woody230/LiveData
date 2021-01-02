@@ -1,4 +1,4 @@
-package com.bselzer.library.livedata.implement
+package com.bselzer.library.livedata.base.implement
 
 /**
  * Interface for resetting objects to a default state.
